@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iClovis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">iClovis</a>
+    </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"><h1 class="center"><marquee behavior="alternate">iClovis v0.6</marquee></h1></div>
+            <div class="col-md-4"></div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form action="/chat" method="post" class="center">
+                    <div class="form-group">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Your username here!" autocomplete="off" autofocus>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Join us!</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 border border-secondary rounded" style="background: rgba(0,0,0,.15)">
+                <h2 class="center">iClovis v0.6 foi lançado!</h2>
+                <h4>O que há de novo?</h4>
+                <ul>
+                    <li>
+                        <h6>Suporte a markdown</h6>
+                        <span>
+                            Utilizando a biblioteca <a target="blank" href="https://github.com/showdownjs/showdown">Showdown</a>
+                            , agora mensagens enviadas utilizam sintaxe markdown. Para saber mais, 
+                            veja as possíveis síntaxes 
+                            <a target="blank" href="https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax">aqui</a>,
+                            ou veja uma <a target="blank" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Cheat Sheet</a>.
+                        </span>
+                    </li>
+                    <li>
+                        <h6>Sistema de horas atualizado</h6>
+                        <span>
+                            Devido inúmeros bugs, o sistema de horas foi atualizado e agora utiliza
+                            o horário do servidor.
+                        </span>
+                    </li>
+                    <li>
+                        <h6>Sistema de citações atualizado</h6>
+                        <span>
+                            Após reclamações e bugs, o sistema de citações foi atualizado e está livre de bugs.
+                        </span>
+                    </li>
+                    <li>
+                        <h6>Atualizações no input</h6>
+                        <span>
+                            O input de envio de mensagens foi atualizado para um textarea, assim textos
+                            com mais de uma linha e identação são suportados (uma necessidade para markdown). <br>
+                            Para quebrar a linha, simplesmente pressione <kbd>Shift + Enter</kbd>.
+                        </span>
+                    </li>
+                    <li>
+                        <h6>Cadastro de informações</h6>
+                        <span>
+                            iClovis agora suporta o cadastro de informações! Para isso, envie o comando
+                            <code style="color: inherit; padding: .3em .5em; background: rgba(0,0,0,.1)">@setUser('Seu nome', 'Sua senha', { image: 'url', style: { seuEstilo: 'estiloso' } })</code> e edite conforme
+                            o desejado. Após isso, seu id sempre será o mesmo que seu nome e seu nick será
+                            estilziado conforme desejado. <br>
+                            Não se preocupe, a mensagem não aparecerá para outros usuários, mantendo assim
+                            sua senha segura, no entanto, não utilize uma senha real, pois todos dados ficam salvos em
+                            um arquivo JSON sem qualquer criptografia. <br>
+                            As tags de style utilizam camelCase.
+                        </span>
+                    </li>
+                    <li>
+                        <h6>Reduzida a quantidade de mods</h6>
+                        <span>
+                            Grande parte dos mods foram removidos, parte para manter compatibilidade com
+                            markdown, parte porque eram raramente usados.
+                        </span>
+                    </li>
+                </ul>
+                <h4>O que ainda há a ser feito?</h4>
+                <ul>
+                    <li>
+                        <h6>Suporte a emojis</h6>
+                        <span>Se alguém quiser adicionar um teclado de emoji, sinta-se livre.</span>
+                    </li>
+                    <li>
+                        <h6>Melhorias no código</h6>
+                        <span>Tais melhorias incluem tornar o código mais legível, funcional e performático.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <script type="text/js" src="./js/jquery-3.3.1.min.js"></script>
+    <script type="text/js" src="./js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

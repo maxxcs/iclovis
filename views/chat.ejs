@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iClovis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
+
+    
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="/" class="navbar-brand">iClovis</a>
+        <span style="color: #999999"><%= data.id %></span>
+        <a href="/logout" class="btn btn-light float-right">Sair</a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <div class="pre-scrollable scrollbar scrollbar-primary boxMessages">
+                    <ul id="messages">
+                        <!-- menssages here -->
+                    </ul>
+                    <div id="bottom"></div>
+               </div>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <!--<hr>--><span id="typingMsg" class="text-black-50">&nbsp;</span>
+                <div class="row">
+                    <div id="quoted-msg" class="col blockquote"></div>
+                </div>
+                <div class="input-group mb-3">
+                    <textarea type="text" class="form-control" id="msgInput" aria-label="Digite aqui..." aria-describedby="btnSend" autocomplete="off" autofocus rows="1"></textarea>
+                    <div class="input-group-append">
+                        <input class="btn btn-outline-secondary" type="submit" id="btnSend" value="Enviar">
+                    </div>
+                    <input type="hidden" id="username" value="<%= data.username%>" data-id="<%= data.id %>">
+                </div>
+                <form class="" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <div class="custom-file">
+                            <input class="custom-file-input" type="file" name="file" aria-describedby="btnFileSend" id="file">
+                            <label class="custom-file-label" for="inputGroupFile04" id="filename">Selecionar um arquivo</label>
+                        </div>
+                        <div class="input-group-append">
+                            <input class="btn btn-outline-secondary" type="submit" id="btnFileSend" value="Upar">
+                        </div>                  
+                    </div>
+                </form>
+                
+                <!--<span id="typingMsg" class="text-black-50"></span>-->
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2"></div>            
+            <div class="col-lg-8 mb-2">
+                <button id="btnClear" class="btn btn-danger">
+                    @clear
+                </button>
+                <button id="btnSetUser" class="btn btn-warning">
+                    @setUser
+                </button>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+    
+    <div id="pageBottom"></div>
+
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script src="./js/render.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('#btnClear').on('click', () => {
+                $('#msgInput').val("@clear ");
+                $('#btnSend').click();
+                $('#msgInput').focus();
+            });
+            $('#btnSetUser').on('click', () => {
+                $('#msgInput').val(`@setUser(\n\t'${$('#username').val()}', \n\t'123456', \n\t{ \n\t\timage: 'https://d1j8pt39hxlh3d.cloudfront.net/development/emojione/2.2/496/2222.svg?1464634800', \n\t\tstyle: { \n\t\t\tborder: '1px solid black' \n\t\t} \n\t}\n)`);
+                $('#msgInput').attr('rows', '12');
+                $('#msgInput').focus(); 
+            })
+            
+            iMods = {
+                messages: document.getElementById('messages'),
+                msgInput: document.getElementById('msgInput'),
+                btnSend: document.getElementById('btnSend')
+            };
+
+            iMods.replaceInput = (what, toWhat) => {
+                input = iMods.msgInput;
+                iMods.msgInput.addEventListener('keyup', () => {
+                    var contains = input.value.indexOf(what);
+                    if(contains != -1) {
+                        input.value = input.value.replace(what, toWhat);
+                        //input.value = input.value.substr(0, contains) + toWhat + input.value.substr(contains+what.length, input.value.length);
+                        input.setSelectionRange(contains+((toWhat.length)/2)-1, contains+((toWhat.length)/2));
+                        input.focus();
+                    }
+                });
+            };
+
+            iMods.script = () => iMods.replaceInput('\\script', '<script> <\/script>');
+
+            iMods.style = () => iMods.replaceInput('\\style', '<style> </style>');        
+
+            iMods.marquee = () => iMods.replaceInput('\\marquee', '<marquee> </marquee>');
+
+            (function inject(verbose) {
+                Object.keys(iMods).forEach(k => {
+                    if(typeof iMods[k] === 'function') {
+                        func = iMods[k].toString();
+                        params = func.substr(0, func.indexOf(')')).substr(func.indexOf('(')+1).split(',')
+                        if(k != 'fakeMsg')
+                            iMods[k]();
+                        if(verbose) {
+                            // iMods.fakeMsg('iClovis Mod Injector', k + '(' + params + ') injected successfully');
+                            console.log('iClovis Mod Injector');
+                            console.log('   ' + k + '(' + params + ') injected successfully');
+                        }
+                    }
+                });
+            })(true);
+        });
+    </script>
+        
+    </body>
+    </html>
+    

@@ -1,0 +1,17 @@
+{
+    "gabreu": {
+        "password": "iClovisProfessionalModder",
+        "image": "http://www.stickpng.com/assets/images/5845e608fb0b0755fa99d7e7.png",
+        "style": {
+            "text-transform": "capitalize"
+        }
+    },
+    "SS": {
+        "password": "skadushi",
+        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0b2c5a36515429.571f666bb343e.png",
+        "style": {
+            "color": "magenta",
+            "backgroundColor": "pink"
+        }
+    }
+}

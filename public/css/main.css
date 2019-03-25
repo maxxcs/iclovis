@@ -1,0 +1,129 @@
+h6{
+    margin-bottom: 0;
+}
+
+.center {
+    text-align: center;
+}
+
+#messages { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    transition: .5s;
+}
+
+#messages li { 
+    padding: 5px 15px; 
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+#messages li:nth-child(odd) { 
+    background: #eee; 
+}
+
+.boxMessages {
+    height: 75vh; 
+    max-height: 75vh;
+}
+
+.scrollbar {
+    background: #fff;
+    overflow-y: scroll;
+}
+.scrollbar-primary::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5; }
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #4285F4; }
+
+
+.msg-hour {
+    color: rgba(0, 0, 0, .4);
+}
+
+blockquote, .blockquote {
+    margin: 0;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    border-left: 6px solid rgba(32,64,128,0.5);
+    padding: 4px 6px;
+    background-color:rgba(16,32,64,0.2);
+    font-size: 90%;
+    max-height: 10em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+p + blockquote, p + .blockquote, span > p {
+    margin: 0;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    
+}
+
+.fa-check-circle {
+    transition: .5s;
+}
+
+.fa-check-circle:hover {
+    cursor: pointer;
+    color: rgba(16,180,64,.7);
+}
+
+.fa-times-circle {
+    transition: .5s;
+}
+
+.fa-times-circle:hover {
+    cursor: pointer;
+    color: rgba(180,32,32,.7);
+}
+
+#quoted-msg {
+    margin: .2em 1em;
+    width: 100%;
+    height: auto;
+    max-height: 0;
+    transition: .5s;
+    visibility: hidden;
+}
+#quoted-msg.open {
+    max-height: 10em;
+    visibility: inherit;
+}
+
+p {
+    margin: 0;
+    margin-block-end: 0;
+    margin-block-start: 0;
+}
+
+p > img {
+    display: block;
+    margin: auto;
+}
+
+img {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: .4em;
+    box-shadow: 0 0 4px rgba(0,0,0,.5);
+    max-width: 96%;
+}
+
+.user-img {
+    display: inline-block;
+    padding: 1px;
+    width: 32px;
+    height: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 100%;
+    box-shadow: 0 0 4px rgba(0,0,0,.5);
+    margin: 0.2em;
+    margin-right: 0.4em;
+}
