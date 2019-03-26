@@ -65,8 +65,8 @@ var appendMsg = function (data) {
 var sendMsg = function () {
     if ($('#msgInput').val().trim() == '') return false;
 
-    let msg = $('#msgInput').val();
-    msg = msg.substr(0, $('#msgInput').caret() - 1) + msg.substr($('#msgInput').caret());
+    let msg = $('#msgInput').val().trim();
+    msg = msg.substr(0, $('#msgInput').caret()).trim() + msg.substr($('#msgInput').caret()).trim();
 
     if (quoting) {
         quoting = quoting.replace('<i class="fas fa-times-circle" onclick="unquote()">', '<i class="fas fa-check-circle" onclick="quote(this)">');

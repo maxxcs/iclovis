@@ -7,11 +7,9 @@
         }
     },
     "SS": {
-        "password": "skadushi",
-        "image": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/0b2c5a36515429.571f666bb343e.png",
         "style": {
-            "color": "magenta",
-            "backgroundColor": "pink"
-        }
+            "border": "1px dashed black"
+        },
+        "password": "skadushi"
     }
 }

@@ -36,6 +36,7 @@ module.exports = (app) => {
                     eval(`(${data.msg.substr(1)})`);
                 } catch(err)
                 {
+                    console.error(err);
                     return;
                 }
                 return;

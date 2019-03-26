@@ -8,8 +8,12 @@
     "start": "nodemon app.js"
   },
   "author": "maxxcs",
-  "contributors": ["Pucinelli"],
-  "repository": { "url": "https://github.com/maxxcs/iclovis" },
+  "contributors": [
+    "Pucinelli"
+  ],
+  "repository": {
+    "url": "https://github.com/maxxcs/iclovis"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
