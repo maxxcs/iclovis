@@ -12,9 +12,9 @@ module.exports = (app) => {
 
     const setUser = (name, password, data, id) => {
         let willEdit = true;
-        if(users[name])
+        if (users[name])
             willEdit = users[name].password == password;
-        if(willEdit) {
+        if (willEdit) {
             data.password = password;
             users[name] = data;
             fs.writeFileSync('./models/users.json', JSON.stringify(users, null, 4));
@@ -34,25 +34,24 @@ module.exports = (app) => {
             } else if (data.msg.startsWith('@setUser')) {
                 try {
                     eval(`(${data.msg.substr(1)})`);
-                } catch(err)
-                {
+                } catch (err) {
                     console.error(err);
                     return;
                 }
                 return;
             }
-            
+
             data.time = moment().format('HH:mm');
-            if(users[data.username]) {
+            if (users[data.username]) {
                 data.style = users[data.username].style;
-                data.image = users[data.username].image;    
+                data.image = users[data.username].image;
             }
-            
+
             msgsHistory.push(data);
             socket.emit('msg2Client', data);
             socket.broadcast.emit('msg2Client', data);
         });
-        
+
         socket.on('userTyping', (data) => {
             socket.broadcast.emit('userTyping', data);
         });

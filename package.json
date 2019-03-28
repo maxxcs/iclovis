@@ -4,7 +4,6 @@
   "description": "Real-time chat built to be used during some classes at Analysis and Development of Systems college.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
   "author": "maxxcs",
@@ -20,9 +19,9 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "express-validator": "^5.3.0",
+    "express-validator": "^5.3.1",
     "moment": "^2.24.0",
-    "multer": "^1.3.1",
-    "socket.io": "^2.1.1"
+    "multer": "^1.4.1",
+    "socket.io": "^2.2.0"
   }
 }

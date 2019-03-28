@@ -14,9 +14,9 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 app.use(express.static('./public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-app.use(expressSession({secret: '28e1ecbc8292ac29ad718991fa79392f', resave: false, saveUninitialized: false}));
+app.use(expressSession({ secret: '28e1ecbc8292ac29ad718991fa79392f', resave: false, saveUninitialized: false }));
 
 require('./routes')(app);
 require('./io')(app);

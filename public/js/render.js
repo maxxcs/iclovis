@@ -19,7 +19,7 @@ const quote = (msgNode) => {
         $('#quoted-msg').toggleClass('open');
     else
         $('#quoted-msg').empty();
-    setTimeout(()=>document.getElementById('pageBottom').scrollIntoView({ block: 'end',  behavior: 'smooth' }), 500);
+    setTimeout(() => document.getElementById('pageBottom').scrollIntoView({ block: 'end', behavior: 'smooth' }), 500);
     $('#quoted-msg').append(quoting);
     $('#msgInput').focus();
 }
