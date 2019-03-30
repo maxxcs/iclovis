@@ -4,17 +4,16 @@
 
 - Real-time chat with anyone within the same network.
 - Markdown support in messages, thanks to [Showdown.js](https://github.com/showdownjs/showdown).
-- Messages support html **caution with this**.
+- Messages support HTML injection purposely **caution with this**.
 - Supports easy uploading of files.
 - Quoting system to reply messages without hassle.
 - Persist users within a configurable ~~and hackable~~ JSON file.
-
+- From developers to developers.
 
 ## What is yet to be done?
 
 - Emoji support
 - Code improvements (such as readability and performance)
-
 
 ## How to use it?
 
@@ -35,4 +34,4 @@ Just open the browser at `<SERVER_IP>:3000`
 
 ## Bugs
 
-There are no discovered bugs yet.
+There are no discovered bugs yet. But yes, it has several bugs.

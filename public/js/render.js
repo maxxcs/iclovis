@@ -1,8 +1,8 @@
-var socket = io();
-var timeout;
-var historyUserMsg = [];
-var actualMsg = 1;
-var quoting = '';
+const socket = io();
+let timeout;
+let historyUserMsg = [];
+let actualMsg = 1;
+let quoting = '';
 
 //functions
 const unquote = () => {
@@ -10,7 +10,8 @@ const unquote = () => {
     $('#quoted-msg').toggleClass('open');
     $('#msgInput').focus();
     setTimeout(() => $('#quoted-msg').empty(), 500);
-}
+};
+
 const quote = (msgNode) => {
     const alreadyQuoting = quoting;
     let inner = msgNode.parentNode.parentNode.parentNode.innerHTML;
@@ -22,12 +23,14 @@ const quote = (msgNode) => {
     setTimeout(() => document.getElementById('pageBottom').scrollIntoView({ block: 'end', behavior: 'smooth' }), 500);
     $('#quoted-msg').append(quoting);
     $('#msgInput').focus();
-}
-var stopTyping = function () {
+};
+
+const stopTyping = () => {
     typing = false;
     socket.emit('userTyping', { typing });
 };
-var appendMsg = function (data) {
+
+const appendMsg = (data) => {
     let sameUser = false;
     let markdown = new showdown.Converter().makeHtml(data.msg);
 
@@ -50,7 +53,6 @@ var appendMsg = function (data) {
     if (data.style)
         title.css(data.style);
 
-
     hour.append(`${data.time}  `);
     hour.append($('<i class="fas fa-check-circle" onclick="quote(this)">'));
     title.append(hour);
@@ -61,8 +63,9 @@ var appendMsg = function (data) {
     hljs.initHighlighting.called = false;
     hljs.initHighlighting();
     document.getElementById('bottom').scrollIntoView();
-}
-var sendMsg = function () {
+};
+
+const sendMsg = () => {
     if ($('#msgInput').val().trim() == '') return false;
 
     let msg = $('#msgInput').val().trim();
@@ -81,36 +84,37 @@ var sendMsg = function () {
     return false;
 };
 
-var reset = function () {
+const reset = () => {
     $('#messages').empty();
-}
+};
 
 //sockets
-socket.on('previousMsgs', function (data) {
+socket.on('previousMsgs', data => {
     for (var i = 0; i < data.length; i++)
         appendMsg(data[i]);
 });
-socket.on('msg2Client', function (data) {
+
+socket.on('msg2Client', data => {
     if (/^@clear$/.test(data.msg)) {
         reset();
         appendMsg(data);
     } else
         appendMsg(data);
 });
-socket.on('file2Client', function (data) {
+
+socket.on('file2Client', data => {
     appendMsg(data);
 });
-socket.on('userTyping', function (data) {
+
+socket.on('userTyping', data => {
     if (data.typing) $('#typingMsg').html(`${data.username} está digitando...`);
     else $('#typingMsg').html('&nbsp;');
 });
+
 socket.on('userStyle', data => {
     console.log(data);
     let style = $('<style>').append(data);
     style.appendTo('body');
-});
-socket.on('reloadPageClient', () => {
-    window.location.href = '/chat';
 });
 
 //jquery

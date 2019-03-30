@@ -65,12 +65,12 @@ module.exports = (app) => {
             return;
         }
 
-        const time = moment().format('H:MM:SS');
+        const time = moment().format('HH:mm');
 
         const file = {
             username: req.session.peer.username,
             filename: req.file.originalname,
-            msg: `<a href="/download/${req.file.filename}">${req.file.originalname}</a>`,
+            msg: `<a href="/download/${req.file.filename}" target="_blank">${req.file.originalname}</a>`,
             time
         };
 
@@ -85,7 +85,6 @@ module.exports = (app) => {
 
         res.download(filePath, (err) => {
             if (err) console.log(err);
-            app.get('io').emit('reloadPageClient');
         });
     });
 

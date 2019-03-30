@@ -1,10 +1,9 @@
+const fs = require('fs');
+const moment = require('moment');
+const users = require('../models/users.json');
+
 module.exports = (app) => {
-
-    const fs = require('fs');
     const io = app.get('io');
-    const moment = app.get('moment');
-    const users = require('../models/users.json');
-
     let msgsHistory = [];
 
     app.set('msgsHistory', msgsHistory);
@@ -22,7 +21,6 @@ module.exports = (app) => {
     }
 
     io.on('connection', (socket) => {
-        console.log(socket.id);
         socket.emit('previousMsgs', msgsHistory);
 
         socket.on('msg2Server', (data) => {
@@ -55,10 +53,6 @@ module.exports = (app) => {
 
         socket.on('userTyping', (data) => {
             socket.broadcast.emit('userTyping', data);
-        });
-
-        socket.on('disconnect', (data) => {
-
         });
     });
 };
