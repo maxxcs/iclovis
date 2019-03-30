@@ -22,6 +22,7 @@ module.exports = (app) => {
     }
 
     io.on('connection', (socket) => {
+        console.log(socket.id);
         socket.emit('previousMsgs', msgsHistory);
 
         socket.on('msg2Server', (data) => {

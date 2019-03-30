@@ -109,6 +109,10 @@ socket.on('userStyle', data => {
     let style = $('<style>').append(data);
     style.appendTo('body');
 });
+socket.on('reloadPageClient', () => {
+    window.location.href = '/chat';
+});
+
 //jquery
 (function ($, undefined) { // get caret position
     $.fn.caret = function () {

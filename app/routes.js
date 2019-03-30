@@ -1,6 +1,7 @@
 const upload = require('./multer');
 const users = require('../models/users.json');
 const moment = require('moment');
+const path = require('path');
 
 module.exports = (app) => {
     app.get('/', (req, res) => {
@@ -80,13 +81,11 @@ module.exports = (app) => {
 
     app.get('/download/:file', (req, res) => {
         const id = req.params.file;
-        const filePath = './uploads/' + id;
+        const filePath = path.join(__dirname, '../uploads/', id);
 
         res.download(filePath, (err) => {
-            if (err) {
-                console.log(err);
-                res.redirect('/chat');
-            }
+            if (err) console.log(err);
+            app.get('io').emit('reloadPageClient');
         });
     });
 
