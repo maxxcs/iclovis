@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
 
-    
+	<style>
+		.blockquote > * {
+			position: relative;
+		}
+	</style>    
+
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -35,9 +40,9 @@
         <div class="row">
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
-                <!--<hr>--><span id="typingMsg" class="text-black-50">&nbsp;</span>
+                <!--<hr>--><div id="typingMsg" class="text-black-50" style="display:block;">&nbsp;</div>
                 <div class="row">
-                    <div id="quoted-msg" class="col blockquote"></div>
+                    <div id="quoted-msg" class="col blockquote" style="z-index: 10;"></div>
                 </div>
                 <div class="input-group mb-3">
                     <textarea type="text" class="form-control" id="msgInput" aria-label="Digite aqui..." aria-describedby="btnSend" autocomplete="off" autofocus rows="1" style="min-height: 38px"></textarea>

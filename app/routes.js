@@ -1,6 +1,7 @@
 const upload = require('./multer');
 const users = require('../models/users.json');
 const moment = require('moment');
+const { validationResult, check } = require('express-validator');
 const path = require('path');
 
 module.exports = (app) => {
@@ -14,7 +15,9 @@ module.exports = (app) => {
         else res.redirect('/');
     });
 
-    app.post('/chat', (req, res) => {
+    app.post('/chat', [
+        check('username', 'O campo usuário é obrigatório').trim().isLength({ min: 3 })
+    ] ,(req, res) => {
         const peer = {
             username: req.body.username.replace(/</g, "&lt;").replace(/>/g, "&gt;"),
             id: `ID${Math.round(Math.random() * 1000000000)}`
@@ -27,10 +30,9 @@ module.exports = (app) => {
         }
 
         console.log(peer);
-        req.assert('username', 'O campo usuário é obrigatório').notEmpty();
 
-        const errors = req.validationErrors();
-        if (errors) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
             res.render('./index', { errors });
             return;
         }

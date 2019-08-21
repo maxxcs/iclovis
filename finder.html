@@ -1,0 +1,11 @@
+<script>
+  const find = async url => {
+    try {
+      if (await fetch(url)) window.location = url;
+    } catch (err) {
+      return;
+    }
+  };
+
+  for (var i = 2; i < 63; i++) find(`http://10.132.84.${i}:3000`);
+</script>

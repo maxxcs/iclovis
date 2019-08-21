@@ -11,5 +11,21 @@
             "border": "1px dashed black"
         },
         "password": "skadushi"
+    },
+    "Casdu": {
+        "image": "https://i1.sndcdn.com/avatars-000145863007-kq564s-t500x500.jpg",
+        "password": "123456"
+    },
+    "tqm470": {
+        "image": "http://3.bp.blogspot.com/_jVScnsTwbto/Sk494i-kuJI/AAAAAAAAAGs/3z1NstQpfd8/S660/Pakkun.jpg",
+        "password": "123456"
+    },
+    "Skadushi": {
+        "image": "https://comoeducarauncachorro.com/blog/wp-content/uploads/paw.jpg",
+        "password": "456789"
+    },
+    "Nask": {
+        "image": "https://rhtblog.files.wordpress.com/2010/12/meu_dono__um_retardado.jpg",
+        "password": "123456"
     }
 }

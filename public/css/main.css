@@ -23,6 +23,12 @@ h6{
     background: #eee; 
 }
 
+#typingMsg {
+    z-index: 0;
+    overflow: hidden;
+    display: block;
+}
+
 .boxMessages {
     height: 75vh; 
     max-height: 75vh;
@@ -92,7 +98,9 @@ p + blockquote, p + .blockquote, span > p {
     max-height: 0;
     transition: .5s;
     visibility: hidden;
+    overflow: hidden;
 }
+
 #quoted-msg.open {
     max-height: 10em;
     visibility: inherit;
