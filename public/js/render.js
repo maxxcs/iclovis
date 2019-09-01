@@ -32,7 +32,17 @@ const stopTyping = () => {
 
 const appendMsg = (data) => {
     let sameUser = false;
-    let markdown = new showdown.Converter().makeHtml(data.msg);
+    let markdown = new showdown.Converter({
+        simplifiedAutoLink: true,
+        literalMidWordUnderscores: true,
+        strikethrough: true,
+        tables: true,
+        tasklists: true,
+        simpleLineBreaks: true,
+        requireSpaceBeforeHeadingText: true,
+        emoji: true,
+        openLinksInNewWindow: true
+    }).makeHtml(data.msg);
 
     let msg = $(`<li id="${data.id}">`);
     let title = $('<span class="row">');
