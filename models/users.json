@@ -6,12 +6,6 @@
             "text-transform": "capitalize"
         }
     },
-    "SS": {
-        "style": {
-            "border": "1px dashed black"
-        },
-        "password": "skadushi"
-    },
     "Casdu": {
         "image": "https://i1.sndcdn.com/avatars-000145863007-kq564s-t500x500.jpg",
         "password": "123456"
@@ -26,6 +20,10 @@
     },
     "Nask": {
         "image": "https://rhtblog.files.wordpress.com/2010/12/meu_dono__um_retardado.jpg",
+        "password": "123456"
+    },
+    "DieGo": {
+        "image": "http://3.bp.blogspot.com/-TMTBG9D9xF8/UOQqxEY20GI/AAAAAAAANCk/DzGWB1QR6uw/s1600/Coco-the-Labrador-Retriever-60x60.jpg",
         "password": "123456"
     }
 }

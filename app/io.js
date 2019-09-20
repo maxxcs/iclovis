@@ -1,6 +1,7 @@
 const fs = require('fs');
 const moment = require('moment');
 const users = require('../models/users.json');
+const mutedUsers = []
 
 module.exports = (app) => {
     const io = app.get('io');
@@ -25,11 +26,22 @@ module.exports = (app) => {
 
         socket.on('msg2Server', (data) => {
             console.log(data);
-            if (data.msg == '') return;
+            if (data.msg == '' || mutedUsers.includes(data.username)) return;
 
             if (/^@clear$/.test(data.msg)) {
                 msgsHistory = [];
                 app.set('msgsHistory', msgsHistory);
+            } else if (/^\\mute .*$/.test(data.msg)) {
+                const user = data.msg.split('\\mute ')[1]
+                if (!mutedUsers.includes(user))
+                    mutedUsers.push(user)
+            } else if (/^\\unmute .*$/.test(data.msg)) {
+                const user = data.msg.split('\\unmute ')[1]
+                if (data.username !== user) {
+                    const index = mutedUsers.indexOf(user)
+                    if (index !== -1)
+                        mutedUsers.splice(index, 1)
+                }
             } else if (data.msg.startsWith('@setUser')) {
                 try {
                     eval(`(${data.msg.substr(1)})`);
@@ -52,6 +64,7 @@ module.exports = (app) => {
         });
 
         socket.on('userTyping', (data) => {
+            if (mutedUsers.includes(data.username)) return;
             socket.broadcast.emit('userTyping', data);
         });
     });
